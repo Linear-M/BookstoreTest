@@ -29,8 +29,7 @@ public class RegisterActivity extends Activity {
                 String referralCode = ((EditText) findViewById(R.id.txtRefferalCode)).getText().toString();
 
                 if (password.equals(repeatedPassword)) {
-                    User user = new User(username, email, password, location, referralCode);
-                    userCRUD.addUser(user);
+                    userCRUD.addUser(new User(username, email, password, location, referralCode));
                     Toast.makeText(this, "Added New User", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Passwords Must Match", Toast.LENGTH_SHORT).show();
