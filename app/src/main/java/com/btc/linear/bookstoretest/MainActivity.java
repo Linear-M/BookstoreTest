@@ -27,8 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             UserCRUD userCRUD = new UserCRUD(this);
             ArrayList<User> userList = userCRUD.getListOfUsers();
             if (userList.size() > 0) {
-                for (User x : userList) {
-                    Toast.makeText(this, x.toString(), Toast.LENGTH_LONG).show();
+                for (User user : userList) {
+                    Toast.makeText(this, user.toString(), Toast.LENGTH_LONG).show();
                 }
             }
             //If the login button has been pressed, find password of the account associated with the given username and compare
@@ -46,6 +46,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             } else {
                 Toast.makeText(this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
             }
+        } else if (view == findViewById(R.id.btnAddBooks)) {
+            BookCRUD bookCRUD = new BookCRUD(this);
+            bookCRUD.addBook(new Book(1523255, "Test Book", "Test Author", 55.29, "28/09/16", "Paperback", 5, "Available",
+                    "https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png" ));
+            Toast.makeText(this, "Test Book Added Successfully", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "No users stored", Toast.LENGTH_LONG).show();
         }

@@ -64,18 +64,15 @@
 
     <Button
         android:id="@+id/btnShowUsers"
-        android:layout_width="300dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="128dp"
+        android:layout_marginStart="30dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
         android:text="Show Users"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -93,5 +90,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPassword"
         app:layout_constraintVertical_bias="0.121" />
+
+    <Button
+        android:id="@+id/btnAddBooks"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Books"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

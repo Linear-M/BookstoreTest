@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 8;
 
     public static final String DATABASE_NAME = "BookstoreTest.db";
 
@@ -36,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + Book.KEY_ReleaseDate + " TEXT, "
                 + Book.KEY_Format + " TEXT, "
                 + Book.KEY_Review + " SMALLINT, "
+                + Book.KEY_PictureURL + " TEXT, "
                 + Book.KEY_Availability + " TEXT )";
 
         database.execSQL(CREATE_TABLE_USER);
@@ -45,6 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
+        database.execSQL("DROP TABLE IF EXISTS " + Book.TABLE);
 
         onCreate(database);
     }

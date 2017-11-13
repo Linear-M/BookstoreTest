@@ -62,7 +62,7 @@ public class BookCRUD {
                 String Format = cursor.getString(cursor.getColumnIndex(Book.KEY_Format));
                 double Price = cursor.getDouble(cursor.getColumnIndex(Book.KEY_Price));
                 String ReleaseDate = cursor.getString(cursor.getColumnIndex(Book.KEY_ReleaseDate));
-                int Review = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Book.KEY_ReleaseDate)));
+                int Review = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Book.KEY_Review)));
                 String PictureURL = cursor.getString(cursor.getColumnIndex(Book.KEY_PictureURL));
                 bookList.add(new Book(ISBN, Name, Author, Price, ReleaseDate, Format, Review, Availability, PictureURL));
             } while (cursor.moveToNext());
