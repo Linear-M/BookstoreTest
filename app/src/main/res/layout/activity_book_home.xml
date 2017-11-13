@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.btc.linear.bookstoretest.BookHomeActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/lytInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

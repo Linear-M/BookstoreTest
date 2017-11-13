@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 11;
 
     public static final String DATABASE_NAME = "BookstoreTest.db";
 
@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + Book.KEY_Format + " TEXT, "
                 + Book.KEY_Review + " SMALLINT, "
                 + Book.KEY_PictureURL + " TEXT, "
+                + Book.KEY_Description + " TEXT, "
                 + Book.KEY_Availability + " TEXT )";
 
         database.execSQL(CREATE_TABLE_USER);

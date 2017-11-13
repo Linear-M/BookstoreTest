@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -16,6 +17,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("Bookstore Test");
+        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        /*
+        if (User.isLoggedIn){
+            startActivity(new Intent(MainActivity.this, BookHomeActivity.class));
+            Toast.makeText(this, "Already Logged In", Toast.LENGTH_SHORT).show();
+        }
+        */
     }
 
     public void onClick(View view) {
@@ -48,8 +61,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         } else if (view == findViewById(R.id.btnAddBooks)) {
             BookCRUD bookCRUD = new BookCRUD(this);
-            bookCRUD.addBook(new Book(1523255, "Test Book", "Test Author", 55.29, "28/09/16", "Paperback", 5, "Available",
-                    "https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png" ));
+            Random rng = new Random();
+            bookCRUD.addBook(new Book((rng.nextInt(2000000000) + 1000000000), "Test Book", "Test Author", 55.29, "28/09/16", "Paperback",
+                    5, "Available", "https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis velit, malesuada vitae lorem quis, ultrices tempor sem. Proin tristique mauris ante," +
+                            " ut pharetra magna pulvinar non."));
             Toast.makeText(this, "Test Book Added Successfully", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "No users stored", Toast.LENGTH_LONG).show();

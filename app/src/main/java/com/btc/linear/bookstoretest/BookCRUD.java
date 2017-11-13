@@ -31,6 +31,7 @@ public class BookCRUD {
         contentValues.put(Book.KEY_ReleaseDate, book.releaseDate);
         contentValues.put(Book.KEY_Review, book.review);
         contentValues.put(Book.KEY_PictureURL, book.pictureUrl);
+        contentValues.put(Book.KEY_Description, book.description);
 
         return database.insert(Book.TABLE, null, contentValues);
     }
@@ -47,6 +48,7 @@ public class BookCRUD {
                 + Book.KEY_Price + ", "
                 + Book.KEY_ReleaseDate + ", "
                 + Book.KEY_Review + ", "
+                + Book.KEY_Description + ", "
                 + Book.KEY_PictureURL
                 + " FROM " + Book.TABLE;
 
@@ -64,9 +66,10 @@ public class BookCRUD {
                 String ReleaseDate = cursor.getString(cursor.getColumnIndex(Book.KEY_ReleaseDate));
                 int Review = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Book.KEY_Review)));
                 String PictureURL = cursor.getString(cursor.getColumnIndex(Book.KEY_PictureURL));
-                bookList.add(new Book(ISBN, Name, Author, Price, ReleaseDate, Format, Review, Availability, PictureURL));
-            } while (cursor.moveToNext());
+                String Description = cursor.getString(cursor.getColumnIndex(Book.KEY_Description));
 
+                bookList.add(new Book(ISBN, Name, Author, Price, ReleaseDate, Format, Review, Availability, PictureURL, Description));
+            } while (cursor.moveToNext());
             cursor.close();
             database.close();
         }
