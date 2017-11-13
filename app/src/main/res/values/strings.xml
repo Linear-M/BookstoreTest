@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BookstoreTest</string>
+    <string name="title_activity_register">RegisterActivity</string>
+</resources>
