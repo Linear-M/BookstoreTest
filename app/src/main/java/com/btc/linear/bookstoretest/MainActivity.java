@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
@@ -17,11 +14,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("Bookstore Test");
-        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         /*
         if (User.isLoggedIn){
@@ -36,19 +32,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (view == findViewById(R.id.btnCreate)) {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             //If the show users button has been pressed (debug) display info on each user in the database
-        } else if (view == findViewById(R.id.btnShowUsers)) {
+        }
+        //If the login button has been pressed, find password of the account associated with the given username and compare
+        else if (view == findViewById(R.id.btnLogin)) {
             UserCRUD userCRUD = new UserCRUD(this);
-            ArrayList<User> userList = userCRUD.getListOfUsers();
-            if (userList.size() > 0) {
-                for (User user : userList) {
-                    Toast.makeText(this, user.toString(), Toast.LENGTH_LONG).show();
-                }
-            }
-            //If the login button has been pressed, find password of the account associated with the given username and compare
-        } else if (view == findViewById(R.id.btnLogin)) {
-            UserCRUD userCRUD = new UserCRUD(this);
-            String proposedUsername = ((EditText) findViewById(R.id.txtUsername)).getText().toString();
-            String providedPassword = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
+            String proposedUsername = ((EditText) findViewById(R.id.txtAdminUser)).getText().toString();
+            String providedPassword = ((EditText) findViewById(R.id.txtAdminPassword)).getText().toString();
 
             if (providedPassword.equals(userCRUD.getUserPassword(proposedUsername))) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show();
@@ -59,17 +48,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             } else {
                 Toast.makeText(this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
             }
-        } else if (view == findViewById(R.id.btnAddBooks)) {
-            BookCRUD bookCRUD = new BookCRUD(this);
-            Random rng = new Random();
-            bookCRUD.addBook(new Book((rng.nextInt(2000000000) + 1000000000), "Test Book", "Test Author", 55.29, "28/09/16", "Paperback",
-                    5, "Available", "https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis velit, malesuada vitae lorem quis, ultrices tempor sem. Proin tristique mauris ante," +
-                            " ut pharetra magna pulvinar non."));
-            Toast.makeText(this, "Test Book Added Successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "No users stored", Toast.LENGTH_LONG).show();
+        } else if (view == findViewById(R.id.btnOpenAdminControlPanel)){
+            startActivity(new Intent(MainActivity.this, AdminControlPanel.class));
         }
-
     }
+
 }
+

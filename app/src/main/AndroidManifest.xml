@@ -26,6 +26,7 @@
         <activity
             android:name=".BookHomeActivity"
             android:theme="@android:style/Theme.Material" />
+        <activity android:name=".AdminControlPanel"></activity>
     </application>
 
 </manifest>

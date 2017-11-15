@@ -7,7 +7,7 @@
     tools:context="com.btc.linear.bookstoretest.RegisterActivity">
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtAdminEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtAdminUser"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -30,7 +30,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminEmail" />
 
     <EditText
         android:id="@+id/txtLocation"
@@ -44,7 +44,7 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminUser" />
 
     <EditText
         android:id="@+id/txtRefferalCode"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvwTermsAndConditions" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtAdminPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -124,6 +124,6 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminPassword" />
 
 </android.support.constraint.ConstraintLayout>

@@ -68,7 +68,6 @@ public class BookHomeActivity extends Activity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 if (!isFinishing()){
                                     new AlertDialog.Builder(BookHomeActivity.this)
                                             .setTitle(tempBook.name + " - " + tempBook.author)

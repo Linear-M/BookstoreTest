@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.972" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtAdminPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -28,26 +28,23 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminUser" />
 
     <Button
         android:id="@+id/btnCreate"
         android:layout_width="144dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
         android:text="Register"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/btnShowUsers"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminPassword" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtAdminUser"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -63,44 +60,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnShowUsers"
-        android:layout_width="144dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
-        android:layout_marginStart="30dp"
-        android:background="@color/colorPrimary"
-        android:onClick="onClick"
-        android:text="Show Users"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/btnLogin"
         android:layout_width="144dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
         android:text="Login"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/btnShowUsers"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdminPassword" />
 
     <Button
-        android:id="@+id/btnAddBooks"
-        android:layout_width="144dp"
+        android:id="@+id/btnOpenAdminControlPanel"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
-        android:text="Add Books"
+        android:text="Open Admin Control Panel"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
