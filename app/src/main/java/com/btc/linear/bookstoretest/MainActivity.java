@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
@@ -32,12 +34,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (view == findViewById(R.id.btnCreate)) {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             //If the show users button has been pressed (debug) display info on each user in the database
-        }
-        //If the login button has been pressed, find password of the account associated with the given username and compare
-        else if (view == findViewById(R.id.btnLogin)) {
+        } else if (view == findViewById(R.id.btnShowUsers)) {
             UserCRUD userCRUD = new UserCRUD(this);
-            String proposedUsername = ((EditText) findViewById(R.id.txtAdminUser)).getText().toString();
-            String providedPassword = ((EditText) findViewById(R.id.txtAdminPassword)).getText().toString();
+            ArrayList<User> userList = userCRUD.getListOfUsers();
+            if (userList.size() > 0) {
+                for (User user : userList) {
+                    Toast.makeText(this, user.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+            //If the login button has been pressed, find password of the account associated with the given username and compare
+        } else if (view == findViewById(R.id.btnAddRandomBook)) {
+            UserCRUD userCRUD = new UserCRUD(this);
+            String proposedUsername = ((EditText) findViewById(R.id.txtUsername)).getText().toString();
+            String providedPassword = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
 
             if (providedPassword.equals(userCRUD.getUserPassword(proposedUsername))) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show();
@@ -52,6 +61,4 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startActivity(new Intent(MainActivity.this, AdminControlPanel.class));
         }
     }
-
 }
-

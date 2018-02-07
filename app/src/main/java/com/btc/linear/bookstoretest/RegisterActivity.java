@@ -22,10 +22,10 @@ public class RegisterActivity extends Activity {
         if (view == findViewById(R.id.btnRegister)) {
             if (((CheckBox) findViewById(R.id.chkTermsAndConditions)).isChecked()) {
                 UserCRUD userCRUD = new UserCRUD(this);
-                String username = ((EditText) findViewById(R.id.txtAdminUser)).getText().toString();
+                String username = ((EditText) findViewById(R.id.txtUsername)).getText().toString();
                 String email = ((EditText) findViewById(R.id.txtAdminEmail)).getText().toString();
-                String password = ((EditText) findViewById(R.id.txtAdminPassword)).getText().toString();
-                String repeatedPassword = ((EditText) findViewById(R.id.txtAdminPassword)).getText().toString();
+                String password = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
+                String repeatedPassword = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
                 String location = ((EditText) findViewById(R.id.txtLocation)).getText().toString();
                 String referralCode = ((EditText) findViewById(R.id.txtRefferalCode)).getText().toString();
 
