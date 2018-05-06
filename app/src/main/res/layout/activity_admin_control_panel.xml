@@ -5,239 +5,237 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_drawer_dark_background"
-    tools:context="com.btc.linear.bookstoretest.AdminControlPanel">
-
-
-    <Button
-        android:id="@+id/btnShowUsers"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#FF3F51B5"
-        android:onClick="onClick"
-        android:text="Show Users"
-        android:textColor="@color/material_drawer_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.btc.linear.bookstoretest.Activities.AdminControlPanel">
 
     <Button
-        android:id="@+id/btnAddRandomBook"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#FF3F51B5"
-        android:onClick="onClick"
-        android:text="Add Random Book"
-        android:textColor="@color/material_drawer_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtUsername"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
-        android:textColor="@color/material_drawer_background"
-        android:textColorHint="@color/md_grey_500"
-        android:textColorLink="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShowUsers" />
-
-    <EditText
-        android:id="@+id/txtAdminEmail"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/material_drawer_background"
-        android:textColorHint="@color/md_grey_500"
-        android:textColorLink="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toEndOf="@+id/txtUsername"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddRandomBook" />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/material_drawer_background"
-        android:textColorHint="@color/md_grey_500"
-        android:textColorLink="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
-
-    <Button
-        android:id="@+id/btnAddAdminUser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/btnDeleteBook"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
-        android:text="Add Admin User"
+        android:text="Delete Book"
         android:textColor="@color/material_drawer_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddRandomBook" />
+
+    <Button
+        android:id="@+id/btnSaveChanges"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Save Changes"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddBook" />
 
     <EditText
         android:id="@+id/txtBookName"
         android:layout_width="165dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Book Name"
         android:inputType="textPersonName"
-        android:textColorHint="@color/md_grey_500"
-        app:layout_constraintEnd_toStartOf="@+id/txtPrice"
-        app:layout_constraintHorizontal_bias="0.941"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddAdminUser" />
-
-    <EditText
-        android:id="@+id/txtPrice"
-        android:layout_width="78dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Price"
-        android:inputType="textPersonName|numberDecimal"
+        android:textAlignment="viewStart"
         android:textColor="@color/material_drawer_background"
         android:textColorHint="@color/md_grey_500"
-        android:textColorLink="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddAdminUser" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="78dp"
+    <EditText
+        android:id="@+id/txtBookAvailability"
+        android:layout_width="165dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/txtPrice"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txtBookName"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddAdminUser" />
-
-    <CheckBox
-        android:id="@+id/chkIsAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Is Admin?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toEndOf="@+id/txtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtAdminEmail" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="170dp"
-        android:layout_height="45dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
+        android:ems="10"
+        android:hint="Book Availability"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBookName" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtBookFormats"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Book Formats"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBookAvailability" />
+
+    <EditText
+        android:id="@+id/txtBookGenre"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Book Genre"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBookFormats" />
+
+    <EditText
+        android:id="@+id/txtAuthorName"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Author"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtBookName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtPrice"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Price"
+        android:inputType="textPersonName|numberDecimal"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="@+id/spnrSearchResults"
+        app:layout_constraintTop_toBottomOf="@+id/txtReleaseDate" />
+
+    <EditText
+        android:id="@+id/txtReleaseDate"
         android:layout_width="170dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Release Date"
         android:inputType="date"
+        android:textAlignment="viewStart"
         android:textColor="@color/material_drawer_background"
         android:textColorHint="@color/md_grey_500"
         android:textColorLink="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="170dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintStart_toEndOf="@+id/txtBookAvailability"
+        app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
 
     <EditText
         android:id="@+id/txtCustomerReview"
-        android:layout_width="170dp"
+        android:layout_width="70dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Customer Review"
+        android:hint="Review"
         android:inputType="number"
+        android:textAlignment="viewStart"
         android:textColor="@color/material_drawer_background"
         android:textColorHint="@color/md_grey_500"
         android:textColorLink="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintEnd_toEndOf="@+id/spnrSearchResults"
+        app:layout_constraintTop_toBottomOf="@+id/txtReleaseDate" />
 
-    <Spinner
-        android:id="@+id/spnAvailability"
+    <Button
+        android:id="@+id/btnAddRandomBook"
         android:layout_width="170dp"
-        android:layout_height="45dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Random Book"
+        android:textColor="@color/material_drawer_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
-
-    <CheckBox
-        android:id="@+id/chkIsHidden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Is Hidden?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spnAvailability"
-        app:layout_constraintTop_toBottomOf="@+id/txtCustomerReview" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSaveChanges" />
 
     <Button
         android:id="@+id/btnAddBook"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
         android:text="Add Book"
         android:textColor="@color/material_drawer_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoreOptions" />
+
+    <Button
+        android:id="@+id/btnMoreOptions"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="More Options"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBookGenre" />
+
+    <ImageView
+        android:id="@+id/imgvBookCover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnAvailability" />
+        app:layout_constraintStart_toEndOf="@+id/btnSaveChanges"
+        app:layout_constraintTop_toBottomOf="@+id/srchBook"
+        app:srcCompat="@color/colorPrimary" />
+
+    <SearchView
+        android:id="@+id/srchBook"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:foregroundTint="@color/material_drawer_background"
+        android:queryHint="Search"
+        app:layout_constraintEnd_toEndOf="@+id/spnrSearchResults"
+        app:layout_constraintStart_toStartOf="@+id/spnrSearchResults"
+        app:layout_constraintTop_toBottomOf="@+id/txtBookGenre" />
+
+    <Spinner
+        android:id="@+id/spnrSearchResults"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtBookGenre"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
 
 </android.support.constraint.ConstraintLayout>

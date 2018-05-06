@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.btc.linear.bookstoretest.RegisterActivity">
+    tools:context="com.btc.linear.bookstoretest.Activities.RegisterActivity">
 
     <EditText
         android:id="@+id/txtAdminEmail"
@@ -55,7 +55,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Referral Code"
-        android:inputType="textPersonName|number|numberSigned|numberDecimal"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRepeatPassword" />

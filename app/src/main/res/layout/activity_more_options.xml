@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MoreOptions">
+
+    <EditText
+        android:id="@+id/txtAddNewAuthor"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="New Book Author"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddNewGenre" />
+
+    <Button
+        android:id="@+id/btnAddNewAuthor"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Format"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtAddNewAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewGenre" />
+
+    <EditText
+        android:id="@+id/txtAddNewGenre"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="New Book Genre"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddNewFormat" />
+
+    <Button
+        android:id="@+id/btnAddNewGenre"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Genre"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtAddNewGenre"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewFormat" />
+
+    <Button
+        android:id="@+id/btnAddNewFormat"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Format"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtAddNewFormat"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewAvailability" />
+
+    <EditText
+        android:id="@+id/txtAddNewFormat"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="New Book Format"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddNewAvailability" />
+
+    <EditText
+        android:id="@+id/txtAddNewAvailability"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="New Book Availability"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddNewAvailability"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Add Availability"
+        android:textColor="@color/material_drawer_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtAddNewAvailability"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

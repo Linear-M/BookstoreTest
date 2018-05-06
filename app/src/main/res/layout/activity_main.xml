@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.btc.linear.bookstoretest.MainActivity">
+    tools:context="com.btc.linear.bookstoretest.Activities.MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -16,32 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972" />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:focusedByDefault="false"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
-
-    <Button
-        android:id="@+id/btnCreate"
-        android:layout_width="144dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
-        android:onClick="onClick"
-        android:text="Register"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <EditText
         android:id="@+id/txtUsername"
@@ -59,34 +33,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:focusedByDefault="false"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/txtUsername"
+        app:layout_constraintStart_toStartOf="@+id/txtUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Register"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="@+id/txtPassword"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
     <Button
         android:id="@+id/btnAddRandomBook"
-        android:layout_width="144dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
         android:onClick="onClick"
         android:text="Login"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtPassword"
         app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
-
-    <Button
-        android:id="@+id/btnOpenAdminControlPanel"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
-        android:onClick="onClick"
-        android:text="Open Admin Control Panel"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
-        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

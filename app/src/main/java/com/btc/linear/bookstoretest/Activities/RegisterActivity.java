@@ -1,4 +1,4 @@
-package com.btc.linear.bookstoretest;
+package com.btc.linear.bookstoretest.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.btc.linear.bookstoretest.DAO.UserCRUD;
+import com.btc.linear.bookstoretest.Entities.User;
+import com.btc.linear.bookstoretest.R;
 
 public class RegisterActivity extends Activity {
 
@@ -17,6 +21,7 @@ public class RegisterActivity extends Activity {
         this.setTitle("Register at Bookstore");
     }
 
+    /* Main onClick handler for all selectable widgets on the register activity */
     public void onClick(View view) {
         //If the create button has been pressed, parse user/email/password into new user object and attempt to add user
         if (view == findViewById(R.id.btnRegister)) {

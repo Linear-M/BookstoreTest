@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:theme="@android:style/Theme.Material">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:theme="@android:style/Theme.Material" />
         <activity
-            android:name=".BookHomeActivity"
+            android:name=".Activities.BookHomeActivity"
             android:theme="@android:style/Theme.Material" />
-        <activity android:name=".AdminControlPanel"></activity>
+        <activity android:name=".Activities.AdminControlPanel" />
+        <activity android:name=".Activities.MoreOptions"
+            android:theme="@android:style/Theme.Material" />
     </application>
 
 </manifest>
