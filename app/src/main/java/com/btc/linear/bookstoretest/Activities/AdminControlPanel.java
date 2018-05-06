@@ -118,7 +118,7 @@ public class AdminControlPanel extends Activity {
         Random rng = new Random();
 
         long _ISBN = rng.nextInt(1000000000) + 1000000000;
-        String _bookName = bookAuthor.getText().toString();
+        String _bookName = bookName.getText().toString();
         double _price = Double.valueOf(bookPrice.getText().toString());
         int _customerReview = Integer.valueOf(customerReview.getText().toString());
         String _pictureURL = recentImageUri;
@@ -180,20 +180,27 @@ public class AdminControlPanel extends Activity {
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.UK);
         String moneyString = formatter.format(returnedBook.price);
 
+
+
         //Fill information fields
         try{
             Picasso.with(getApplicationContext()).load(Uri.parse(returnedBook.pictureUrl)).into(bookCoverImageView);
+        }catch (Exception e){
+            Log.d("ERR", e.getMessage());
+            Picasso.with(getApplicationContext()).load(Uri.parse("https://bit.ly/2KE2Jvz")).into(bookCoverImageView);
+        }
 
-            bookFormats.setText(String.valueOf(returnedBook.format));
-            bookAvailability.setText(String.valueOf(returnedBook.availability));
-            //bookGenre.setText(String.valueOf(returnedBook.genre));
-            bookAuthor.setText(String.valueOf(returnedBook.author));
-            bookPrice.setText(String.valueOf(moneyString));
-            customerReview.setText(String.valueOf(returnedBook.review));
-            releaseDate.setText(String.valueOf(returnedBook.releaseDate));
-            bookName.setText(String.valueOf(returnedBook.name));
-            bookGenre.setText(String.valueOf(returnedBook.genre));
-        }catch (Exception e){}
+        bookFormats.setText(String.valueOf(returnedBook.format));
+        bookAvailability.setText(String.valueOf(returnedBook.availability));
+        bookGenre.setText(String.valueOf(returnedBook.genre));
+        bookAuthor.setText(String.valueOf(returnedBook.author));
+        bookPrice.setText(String.valueOf(moneyString));
+        customerReview.setText(String.valueOf(returnedBook.review));
+        releaseDate.setText(String.valueOf(returnedBook.releaseDate));
+        bookName.setText(String.valueOf(returnedBook.name));
+        bookGenre.setText(String.valueOf(returnedBook.genre));
+        Toast.makeText(this,String.valueOf(returnedBook.genre), Toast.LENGTH_LONG).show();
+
     }
 
     /* When the book cover image is clicked, generate a modal dialog (alert dialog) that will allow for a new book cover image URL to be added */
