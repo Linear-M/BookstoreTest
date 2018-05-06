@@ -20,12 +20,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "BookstoreTest.db";
 
-    /* Constructor */
+    /* Constructor to gain context and set super's*/
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    /* Generate User and Book tables on app first load/version increment */
+    /* Generate User, Book, Genre, Format, Availability and Author tables on app first load/version increment */
     @Override
     public void onCreate(SQLiteDatabase database) {
         String CREATE_TABLE_USER = "CREATE TABLE " + User.TABLE + "("

@@ -62,7 +62,7 @@ public class BookHomeActivity extends Activity {
         BookCRUD bookCRUD = new BookCRUD(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_home);
-        this.setTitle(User.loggedInUser.username + "'s Bookstore");
+        this.setTitle(User.loggedInUser.getUsername() + "'s Bookstore");
 
         //Find/instantiate widget objects
         spinner = (Spinner) findViewById(R.id.spnrFilter) ;

@@ -21,6 +21,7 @@ public class UserCRUD {
     private static Context _context;
 
     public UserCRUD(Context context) {
+        //Constructor used for obtaining context
         databaseHelper = new DatabaseHelper(context);
         _context = context;
     }
@@ -31,11 +32,12 @@ public class UserCRUD {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(User.KEY_Username, user.username);
-        contentValues.put(User.KEY_Email, user.email);
-        contentValues.put(User.KEY_Password, user.password);
-        contentValues.put(User.KEY_Location, user.location);
-        contentValues.put(User.KEY_Referral_Code, user.referral);
+        //Add user data to query
+        contentValues.put(User.KEY_Username, user.getUsername());
+        contentValues.put(User.KEY_Email, user.getEmail());
+        contentValues.put(User.KEY_Password, user.getPassword());
+        contentValues.put(User.KEY_Location, user.getLocation());
+        contentValues.put(User.KEY_Referral_Code, user.getReferral());
 
         return database.insert(User.TABLE, null, contentValues);
     }
@@ -44,10 +46,12 @@ public class UserCRUD {
     public boolean isAdmin(User user) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-        String getUserReferral = "SELECT " + User.KEY_Referral_Code + " FROM " + User.TABLE + " WHERE " + User.KEY_Username + " = '" + user.username + "'";
+        //Select only referral code for the logged-in/selected user
+        String getUserReferral = "SELECT " + User.KEY_Referral_Code + " FROM " + User.TABLE + " WHERE " + User.KEY_Username + " = '" + user.getUsername() + "'";
 
         Cursor cursor = database.rawQuery(getUserReferral, null);
 
+        //If no result exists, return false, else if referral_code == admin return true, the user is an admin
         if (cursor.moveToFirst()){
             if (cursor.getString(cursor.getColumnIndex(User.KEY_Referral_Code)).equals("admin")){
                 return true;
@@ -56,7 +60,7 @@ public class UserCRUD {
         return false;
     }
 
-    /* Retrieve a list of all users in the database */
+    /* DEPRECATED: Retrieve a list of all users in the database, testing use only */
     public ArrayList<User> getListOfUsers() {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
         String getUserSelectQuery = "SELECT "
@@ -71,6 +75,7 @@ public class UserCRUD {
         ArrayList<User> userList = new ArrayList<>();
         Cursor cursor = database.rawQuery(getUserSelectQuery, null);
 
+        //Iterate through each cursor row, generate new user from data and add to temporary user list
         if (cursor.moveToFirst()) {
             do {
                 userList.add(new User(Integer.parseInt(cursor.getString(cursor.getColumnIndex(User.KEY_ID)).toString()), cursor.getString(cursor.getColumnIndex(User.KEY_Username)),
@@ -87,9 +92,12 @@ public class UserCRUD {
     /* Return the password of a user given their username */
     public String getUserPassword(String username) {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        //Use SQL query parameter to select username from user with given password
         String getUserPasswordQuery = "SELECT " + User.KEY_Password + " FROM " + User.TABLE + " WHERE " + User.KEY_Username + "=?";
         Cursor cursor = database.rawQuery(getUserPasswordQuery, new String[]{username});
 
+        //Move to first - and only - cursor row and return password data
         if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(User.KEY_Password));
         }
@@ -99,9 +107,12 @@ public class UserCRUD {
     /* As we assume username's are unique, return a user object based upon the given username */
     public User getUserByUsername(String username) {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        //Use SQL query parameter to return user object from user with given password
         String getUserPasswordQuery = "SELECT * FROM " + User.TABLE + " WHERE " + User.KEY_Username + "=?";
         Cursor cursor = database.rawQuery(getUserPasswordQuery, new String[]{username});
 
+        //Move to first - and only - cursor row and return user data
         if (cursor.moveToFirst()) {
             return new User(Integer.parseInt(cursor.getString(cursor.getColumnIndex(User.KEY_ID))), cursor.getString(cursor.getColumnIndex(User.KEY_Username)), cursor.getString(cursor.getColumnIndex(User.KEY_Email)),
                     cursor.getString(cursor.getColumnIndex(User.KEY_Password)), cursor.getString(cursor.getColumnIndex(User.KEY_Location)), cursor.getString(cursor.getColumnIndex(User.KEY_Referral_Code)));

@@ -81,6 +81,7 @@ public class BookCRUD {
 
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(selectQuery, null);
 
+        //Ensure a cursor is not null and that it is closed before it is returned
         if (cursor == null){
             return null;
         } else if (!cursor.moveToFirst()){
@@ -107,9 +108,11 @@ public class BookCRUD {
                 + Book.KEY_PictureURL
                 + " FROM " + Book.TABLE;
 
+        //Generate cursor object with returned data
         ArrayList<Book> bookList = new ArrayList<>();
         Cursor cursor = database.rawQuery(getBookSelectQuery, null);
 
+        //For each returned row within the cursor, generate a book object and add it to a temporary book list
         if (cursor.moveToFirst()) {
             do {
                 long ISBN = cursor.getLong(cursor.getColumnIndex(Book.KEY_ISBN));
@@ -139,7 +142,7 @@ public class BookCRUD {
         String getBookSelectQuery = "SELECT * " + " FROM " + Book.TABLE + " WHERE ";
         boolean isPrice = false;
 
-        //Switch using the selected sub-filter
+        //Append table to query based on selected filter
         switch (filter){
             case "Availability":
                 getBookSelectQuery += Book.KEY_Availability;
@@ -151,6 +154,7 @@ public class BookCRUD {
                 getBookSelectQuery += Book.KEY_Genre;
                 break;
             case "Price":
+                //If price is selected, generate new query to retrieve all book data but on ascending or descending order by price
                 switch (advancedFilter){
                     case "Low to High":
                         getBookSelectQuery = "SELECT * " + " FROM " + Book.TABLE + " ORDER BY " + Book.KEY_Price + " ASC";
@@ -164,6 +168,7 @@ public class BookCRUD {
                 break;
         }
 
+        //If price query is not selected append advanced filter to query
         if (!isPrice){
             getBookSelectQuery +=  " = '" + advancedFilter + "'";
         }
@@ -173,7 +178,7 @@ public class BookCRUD {
         ArrayList<Book> bookList = new ArrayList<>();
         Cursor cursor = database.rawQuery(getBookSelectQuery, null);
 
-        //Generate Book objects from cursor iteration
+        //Generate Book objects from cursor iteration and add to temporary list
         if (cursor.moveToFirst()) {
             do {
                 long ISBN = cursor.getLong(cursor.getColumnIndex(Book.KEY_ISBN));
@@ -196,10 +201,11 @@ public class BookCRUD {
         return bookList;
     }
 
-    //Search for and instantiate a Book object based on the data returned from a WHERE SQL search based on given ISBN */
+    /* Search for and instantiate a Book object based on the data returned from a WHERE SQL search based on given ISBN */
     public Book getBookByISBN(long _ISBN){
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
-        //Verbose query again tbh
+
+        //Select all book information where ISBN matches, iterate through cursor row and return a new book object
         String getBookSelectQuery = "SELECT * FROM " + Book.TABLE + " WHERE " + Book.KEY_ISBN + " = " + _ISBN;
 
         Cursor cursor = database.rawQuery(getBookSelectQuery, null);

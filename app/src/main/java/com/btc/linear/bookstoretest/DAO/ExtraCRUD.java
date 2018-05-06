@@ -19,49 +19,59 @@ import java.text.Normalizer;
 /**
  * Created by Ben on 05/05/2018.
  */
+
+/* DAO for relational-supporting tables of the Book table - support for genre, format, availability and author */
 public class ExtraCRUD {
     private DatabaseHelper databaseHelper;
     private Context context;
 
+    /* Constructor to gain context (mainly for toast calls) */
     public ExtraCRUD(Context context) {
         databaseHelper = new DatabaseHelper(context);
         this.context = context;
     }
 
-
+    /* Add new genre to genre table */
     public long addGenre(Genre genre) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Genre.KEY_GENRE_TYPE, genre.genreType);
-        contentValues.put(Genre.KEY_GENRE_DESCRIPTION, genre.genreDescription);
+        /* Add genre data to query */
+        contentValues.put(Genre.KEY_GENRE_TYPE, genre.getGenreType());
+        contentValues.put(Genre.KEY_GENRE_DESCRIPTION, genre.getGenreDescription());
 
         return database.insert(Genre.TABLE, null, contentValues);
     }
 
+    /* Add new format to format table */
     public long addFormat(Format format) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Format.KEY_FORMAT_TYPE, format.formatType);
+        /* Add format data to query */
+        contentValues.put(Format.KEY_FORMAT_TYPE, format.getFormatType());
 
         return database.insert(Format.TABLE, null, contentValues);
     }
 
+    /* Add new availability to availability table */
     public long addAvailability(Availability availability) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Availability.KEY_AVAILABILITY_TYPE, availability.availabilityType);
+        /* Add availability data to query */
+        contentValues.put(Availability.KEY_AVAILABILITY_TYPE, availability.getAvailabilityType());
 
         return database.insert(Availability.TABLE, null, contentValues);
     }
 
+    /* Add new author to author table */
     public long addAuthor(Author author) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Author.KEY_AUTHOR_FULL_NAME, author.authorFullName);
+        /* Add author data to query */
+        contentValues.put(Author.KEY_AUTHOR_FULL_NAME, author.getAuthorFullName());
 
         return database.insert(Author.TABLE, null, contentValues);
     }
@@ -71,6 +81,7 @@ public class ExtraCRUD {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
         String getUserPasswordQuery = "SELECT * FROM " + Genre.TABLE + " WHERE " + Genre.KEY_GENRE_TYPE + "=?";
 
+        /* If can move to first result, a result exists, therefore it goes exist */
         return database.rawQuery(getUserPasswordQuery, new String[]{genre}).moveToFirst() ? true : false;
     }
 
@@ -79,6 +90,7 @@ public class ExtraCRUD {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
         String getUserPasswordQuery = "SELECT * FROM " + Format.TABLE + " WHERE " + Format.KEY_FORMAT_TYPE + "=?";
 
+        /* If can move to first result, a result exists, therefore it goes exist */
         return database.rawQuery(getUserPasswordQuery, new String[]{format}).moveToFirst() ? true : false;
     }
 
@@ -87,6 +99,7 @@ public class ExtraCRUD {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
         String getUserPasswordQuery = "SELECT * FROM " + Availability.TABLE + " WHERE " + Availability.KEY_AVAILABILITY_TYPE + "=?";
 
+        /* If can move to first result, a result exists, therefore it goes exist */
         return database.rawQuery(getUserPasswordQuery, new String[]{availability}).moveToFirst() ? true : false;
     }
 
@@ -95,6 +108,7 @@ public class ExtraCRUD {
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
         String getUserPasswordQuery = "SELECT * FROM " + Author.TABLE + " WHERE " + Author.KEY_AUTHOR_FULL_NAME + "=?";
 
+        /* If can move to first result, a result exists, therefore it goes exist */
         return database.rawQuery(getUserPasswordQuery, new String[]{authorFullName}).moveToFirst() ? true : false;
     }
 
@@ -104,6 +118,7 @@ public class ExtraCRUD {
 
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(selectQuery, null);
 
+        //Check if cursor is null and that it is closed prior to return
         if (cursor == null){
             return null;
         } else if (!cursor.moveToFirst()){
@@ -118,6 +133,7 @@ public class ExtraCRUD {
 
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(selectQuery, null);
 
+        //Check if cursor is null and that it is closed prior to return
         if (cursor == null){
             return null;
         } else if (!cursor.moveToFirst()){
@@ -132,6 +148,7 @@ public class ExtraCRUD {
 
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(selectQuery, null);
 
+        //Check if cursor is null and that it is closed prior to return
         if (cursor == null){
             return null;
         } else if (!cursor.moveToFirst()){
@@ -140,9 +157,12 @@ public class ExtraCRUD {
         return cursor;
     }
 
+    /* Returns true/false based upon the existence of each given author, availability, format and genre */
     public boolean isRelationalDataCorrect(String author, String availability, String format, String genre){
         String ErrorReport = "ERROR!\n";
         Boolean temp = true;
+
+        /* 'Iterate' through each existence-check, if it does not exist append an error message and flip temp bit */
 
         if (!doesAuthorExist(author)) {
             ErrorReport += "Author Does Not Exist.\n";
@@ -164,6 +184,7 @@ public class ExtraCRUD {
             temp = false;
         }
 
+        //If returning error, show error toast before returning
         if (!temp) {
             Toast.makeText(this.context, ErrorReport, Toast.LENGTH_LONG).show();
         }

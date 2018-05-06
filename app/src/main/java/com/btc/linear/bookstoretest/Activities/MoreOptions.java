@@ -31,6 +31,7 @@ public class MoreOptions extends Activity implements View.OnClickListener {
         this.newFormat = findViewById(R.id.txtAddNewFormat);
         this.newAuthor = findViewById(R.id.txtAddNewAuthor);
         this.newAvailability = findViewById(R.id.txtAddNewAvailability);
+        this.setTitle("Bookstore - More ACP Options");
     }
 
     public void onClick(View view){

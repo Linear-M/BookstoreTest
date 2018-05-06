@@ -114,7 +114,7 @@ public class Book {
 
     //endregion
 
-    //Attributes
+    /* Attributes */
     public long ISBN;
     public double price;
     public int review;
@@ -128,6 +128,7 @@ public class Book {
     public String description;
     public String genre;
 
+    /* Constructor to instantiate an object with data */
     public Book(long _ISBN, String Name, String Author, double Price, String ReleaseDate, String Format, int Review, String Availability, String PictureURL, String Description, String Genre) {
         ISBN = _ISBN;
         name = Name;
