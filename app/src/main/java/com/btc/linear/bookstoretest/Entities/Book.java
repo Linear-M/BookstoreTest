@@ -112,21 +112,31 @@ public class Book {
         this.description = description;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
     //endregion
 
     /* Attributes */
-    public long ISBN;
-    public double price;
-    public int review;
-    public String name;
-    public String author;
-    public String releaseDate;
-    public String format;
+    private long ISBN;
 
-    public String availability;
-    public String pictureUrl;
-    public String description;
-    public String genre;
+    private double price;
+
+    private int review;
+
+    private String name;
+    private String author;
+    private String releaseDate;
+    private String format;
+    private String availability;
+    private String pictureUrl;
+    private String description;
+    private String genre;
 
     /* Constructor to instantiate an object with data */
     public Book(long _ISBN, String Name, String Author, double Price, String ReleaseDate, String Format, int Review, String Availability, String PictureURL, String Description, String Genre) {

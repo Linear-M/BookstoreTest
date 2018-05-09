@@ -7,6 +7,21 @@
     android:background="@color/material_drawer_dark_background"
     tools:context="com.btc.linear.bookstoretest.Activities.AdminControlPanel">
 
+    <EditText
+        android:id="@+id/txtBookISBN"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Book ISBN"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textColor="@color/material_drawer_background"
+        android:textColorHint="@color/md_grey_500"
+        app:layout_constraintEnd_toEndOf="@+id/txtCustomerReview"
+        app:layout_constraintStart_toStartOf="@+id/txtPrice"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+
     <Button
         android:id="@+id/btnDeleteBook"
         android:layout_width="170dp"
@@ -225,7 +240,7 @@
         android:queryHint="Search"
         app:layout_constraintEnd_toEndOf="@+id/spnrSearchResults"
         app:layout_constraintStart_toStartOf="@+id/spnrSearchResults"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookGenre" />
+        app:layout_constraintTop_toBottomOf="@+id/spnrSearchResults" />
 
     <Spinner
         android:id="@+id/spnrSearchResults"
@@ -235,7 +250,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toEndOf="@+id/txtBookGenre"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBookISBN" />
 
 </android.support.constraint.ConstraintLayout>

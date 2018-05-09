@@ -51,7 +51,11 @@ public class MoreOptions extends Activity implements View.OnClickListener {
         ExtraCRUD extraCRUD = new ExtraCRUD(this);
         String genreType = newGenre.getText().toString();
 
-        Toast.makeText(this, String.valueOf(extraCRUD.addGenre(new Genre(genreType, "")) + " - " + genreType), Toast.LENGTH_LONG).show();
+        if (!genreType.equals("")){
+            Toast.makeText(this, String.valueOf(extraCRUD.addGenre(new Genre(genreType, "")) + " - " + genreType), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Please Enter a Valid Genre String", Toast.LENGTH_LONG).show();
+        }
     }
 
     /* Fetch information from widgets, instantiate new author and use the DAO to amend database */
@@ -59,7 +63,11 @@ public class MoreOptions extends Activity implements View.OnClickListener {
         ExtraCRUD extraCRUD = new ExtraCRUD(this);
         String authorName = newAuthor.getText().toString();
 
-        Toast.makeText(this, String.valueOf(extraCRUD.addAuthor(new Author(authorName)) + " - " + authorName), Toast.LENGTH_LONG).show();
+        if (!authorName.equals("")){
+            Toast.makeText(this, String.valueOf(extraCRUD.addAuthor(new Author(authorName)) + " - " + authorName), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Please Enter a Valid Author String", Toast.LENGTH_LONG).show();
+        }
     }
 
     /* Fetch information from widgets, instantiate new format and use the DAO to amend database */
@@ -67,7 +75,11 @@ public class MoreOptions extends Activity implements View.OnClickListener {
         ExtraCRUD extraCRUD = new ExtraCRUD(this);
         String formatType = newFormat.getText().toString();
 
-        Toast.makeText(this, String.valueOf(extraCRUD.addFormat(new Format(formatType)) + " - " + formatType), Toast.LENGTH_LONG).show();
+        if (!formatType.equals("")){
+            Toast.makeText(this, String.valueOf(extraCRUD.addFormat(new Format(formatType)) + " - " + formatType), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Please Enter a Valid Format String", Toast.LENGTH_LONG).show();
+        }
     }
 
     /* Fetch information from widgets, instantiate new availability and use the DAO to amend database */
@@ -75,6 +87,10 @@ public class MoreOptions extends Activity implements View.OnClickListener {
         ExtraCRUD extraCRUD = new ExtraCRUD(this);
         String availabilityType = newAvailability.getText().toString();
 
-        Toast.makeText(this, String.valueOf(extraCRUD.addAvailability(new Availability(availabilityType)) + " - " + availabilityType), Toast.LENGTH_LONG).show();
+        if (!availabilityType.equals("")){
+            Toast.makeText(this, String.valueOf(extraCRUD.addAvailability(new Availability(availabilityType)) + " - " + availabilityType), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Please Enter a Valid Availability String", Toast.LENGTH_LONG).show();
+        }
     }
 }

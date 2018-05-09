@@ -150,13 +150,13 @@ public class BookHomeActivity extends Activity {
                 //Right hand side text
                 TextView bookView = new TextView(this);
                 bookView.setText(book.toDisplayString());
-                bookView.setId((int)book.ISBN);
+                bookView.setId((int)book.getISBN());
                 bookView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
                 //Left hand side book-cover image fetching, parsing and rendering
                 ImageView bookCover = new ImageView(this);
                 try{
-                    Picasso.with(getApplicationContext()).load(Uri.parse(book.pictureUrl)).into(bookCover);
+                    Picasso.with(getApplicationContext()).load(Uri.parse(book.getPictureUrl())).into(bookCover);
                 }catch (Exception e){
                     Picasso.with(getApplicationContext()).load(Uri.parse("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/book-cover-flyer-template-6bd8f9188465e443a5e161a7d0b3cf33_screen.jpg?ts=1456287935")).into(bookCover);
                 }
@@ -186,7 +186,7 @@ public class BookHomeActivity extends Activity {
                             public void run() {
                                 if (!isFinishing()){
                                     new AlertDialog.Builder(BookHomeActivity.this)
-                                            .setTitle(tempBook.name + " - " + tempBook.author)
+                                            .setTitle(tempBook.getName() + " - " + tempBook.getAuthor())
                                             .setMessage(tempBook.toModalString())
                                             .setCancelable(false)
                                             .setPositiveButton("Close", new DialogInterface.OnClickListener() {

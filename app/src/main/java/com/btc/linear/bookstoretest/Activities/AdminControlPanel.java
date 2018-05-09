@@ -36,9 +36,10 @@ public class AdminControlPanel extends Activity {
 
     /* Public objects that will be instantiated onCreate() */
     ImageView bookCoverImageView;
-    EditText bookName, bookPrice, releaseDate, customerReview, bookFormats, bookAvailability, bookGenre, bookAuthor;
-    Spinner mySpinner;
+    EditText bookName, bookPrice, releaseDate, customerReview, bookFormats, bookAvailability, bookGenre, bookAuthor, bookISBN;
+    Spinner searchSpinner;
     String recentImageUri;
+    SearchView searchView;
 
     /* On app create, instantiate UI objects by ID as well as set general listeners */
     @Override
@@ -47,6 +48,7 @@ public class AdminControlPanel extends Activity {
         setContentView(R.layout.activity_admin_control_panel);
         this.setTitle("Bookstore's Admin Control Panel");
 
+        bookISBN = findViewById(R.id.txtBookISBN);
         bookFormats = findViewById(R.id.txtBookFormats);
         bookAvailability = findViewById(R.id.txtBookAvailability);
         bookGenre = findViewById(R.id.txtBookGenre);
@@ -56,14 +58,14 @@ public class AdminControlPanel extends Activity {
         bookPrice = findViewById(R.id.txtPrice);
         bookName = findViewById(R.id.txtBookName);
         bookCoverImageView = findViewById(R.id.imgvBookCover);
-        SearchView searchView = findViewById(R.id.srchBook);
-        mySpinner = findViewById(R.id.spnrSearchResults);
+        searchView = findViewById(R.id.srchBook);
+        searchSpinner = findViewById(R.id.spnrSearchResults);
 
         /* Load default ACP image */
         Picasso.with(getApplicationContext()).load(Uri.parse("http://miriadna.com/desctopwalls/images/max/Milky-way.jpg")).into(bookCoverImageView);
 
         /* After a search, if a different ISBN is selected re-filter results */
-        mySpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+        searchSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
                 fillBookInformationFromSearch((long)parent.getItemAtPosition(pos));
@@ -80,7 +82,7 @@ public class AdminControlPanel extends Activity {
             public boolean onQueryTextSubmit(String searchCriteria) {
                 ArrayAdapter<Long> spinnerArrayAdapter = new ArrayAdapter<>(AdminControlPanel.this, R.layout.spinner_item, searchBooks(searchCriteria));
                 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                mySpinner.setAdapter(spinnerArrayAdapter);
+                searchSpinner.setAdapter(spinnerArrayAdapter);
                 return false;
             }
 
@@ -113,35 +115,47 @@ public class AdminControlPanel extends Activity {
 
     /* Fetch information from widgets, instantiate new book and use the DAO to amend database */
     private void addBook(){
-        BookCRUD bookCRUD = new BookCRUD(this);
-        ExtraCRUD extraCRUD = new ExtraCRUD(this);
-        Random rng = new Random();
+        if ((searchSpinner.getSelectedItem() == null)) {
+            if ((bookISBN.getText().toString().equals(""))){
+                Toast.makeText(this, "No Details Provided", Toast.LENGTH_LONG).show();
+            } else {
+                BookCRUD bookCRUD = new BookCRUD(this);
+                ExtraCRUD extraCRUD = new ExtraCRUD(this);
+                Random rng = new Random();
 
-        long _ISBN = rng.nextInt(1000000000) + 1000000000;
-        String _bookName = bookName.getText().toString();
-        double _price = Double.valueOf(bookPrice.getText().toString());
-        int _customerReview = Integer.valueOf(customerReview.getText().toString());
-        String _pictureURL = recentImageUri;
-        String _releaseDate = releaseDate.getText().toString();
-        String _bookFormats = bookFormats.getText().toString();
-        String _bookAvailability = bookAvailability.getText().toString();
-        String _bookAuthor = bookAuthor.getText().toString();
-        String _description = bookAvailability.getText().toString();
-        String _genre = bookGenre.getText().toString();
+                long _ISBN = Long.valueOf(bookISBN.getText().toString());
+                String _bookName = bookName.getText().toString();
+                double _price = Double.valueOf(bookPrice.getText().toString());
+                int _customerReview = Integer.valueOf(customerReview.getText().toString());
+                String _pictureURL = recentImageUri;
+                String _releaseDate = releaseDate.getText().toString();
+                String _bookFormats = bookFormats.getText().toString();
+                String _bookAvailability = bookAvailability.getText().toString();
+                String _bookAuthor = bookAuthor.getText().toString();
+                String _description = bookAvailability.getText().toString();
+                String _genre = bookGenre.getText().toString();
 
-        if (extraCRUD.isRelationalDataCorrect(_bookAuthor, _bookAvailability, _bookFormats, _genre)){
-            bookCRUD.addBook(new Book(_ISBN, _bookName, _bookAuthor, _price, _releaseDate, _bookFormats, _customerReview, _bookAvailability, _pictureURL, _description, _genre));
-            Toast.makeText(this, "Book Added", Toast.LENGTH_SHORT).show();
+                if (extraCRUD.isRelationalDataCorrect(_bookAuthor, _bookAvailability, _bookFormats, _genre)) {
+                    bookCRUD.addBook(new Book(_ISBN, _bookName, _bookAuthor, _price, _releaseDate, _bookFormats, _customerReview, _bookAvailability, _pictureURL, _description, _genre));
+                    Toast.makeText(this, "Book Added", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            Toast.makeText(this, "Cannot Add Book to Database - Book Exists Already", Toast.LENGTH_LONG).show();
         }
     }
 
     /* Fetch the ISBN of the book to be deleted and use DAO methods to remove the book from the database and reset the view */
     private void deleteBook(){
-        //Delete book
-        BookCRUD bookCRUD = new BookCRUD(this);
-        bookCRUD.deleteBook(Long.valueOf(mySpinner.getSelectedItem().toString()));
-        //Reset view
-        startActivity(new Intent(AdminControlPanel.this, AdminControlPanel.class));
+        if (!bookISBN.getText().toString().equals("")) {
+            //Delete book
+            BookCRUD bookCRUD = new BookCRUD(this);
+            bookCRUD.deleteBook(Long.valueOf(searchSpinner.getSelectedItem().toString()));
+            //Reset view
+            startActivity(new Intent(AdminControlPanel.this, AdminControlPanel.class));
+        } else {
+            Toast.makeText(this, "No Book Present to Delete", Toast.LENGTH_LONG).show();
+        }
     }
 
     /* Generate a random book object with random ISBN's and costs (default other data such as book name, author and description) */
@@ -150,8 +164,7 @@ public class AdminControlPanel extends Activity {
         Random rng = new Random();
         bookCRUD.addBook(new Book((rng.nextInt(1000000000) + 1000000000), "Test Book", "Test Author", rng.nextInt(10) + 1, "28/09/16", "Paperback",
                 5, "Available", "https://about.canva.com/wp-content/uploads/sites/3/2015/01/children_bookcover.png",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis velit, malesuada vitae lorem quis, ultrices tempor sem. Proin tristique mauris ante," +
-                        " ut pharetra magna pulvinar non.", "SampleGenre"));
+                "Test Description", "SampleGenre"));
     }
 
     /* Using the book DAO retrieve a list of books objects that match a given search criteria */
@@ -178,29 +191,27 @@ public class AdminControlPanel extends Activity {
 
         //Currency formatter (local must be UK)
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.UK);
-        String moneyString = formatter.format(returnedBook.price);
+        String moneyString = formatter.format(returnedBook.getPrice());
 
 
 
         //Fill information fields
         try{
-            Picasso.with(getApplicationContext()).load(Uri.parse(returnedBook.pictureUrl)).into(bookCoverImageView);
+            Picasso.with(getApplicationContext()).load(Uri.parse(returnedBook.getPictureUrl())).into(bookCoverImageView);
         }catch (Exception e){
             Log.d("ERR", e.getMessage());
             Picasso.with(getApplicationContext()).load(Uri.parse("https://bit.ly/2KE2Jvz")).into(bookCoverImageView);
         }
 
-        bookFormats.setText(String.valueOf(returnedBook.format));
-        bookAvailability.setText(String.valueOf(returnedBook.availability));
-        bookGenre.setText(String.valueOf(returnedBook.genre));
-        bookAuthor.setText(String.valueOf(returnedBook.author));
+        bookISBN.setText(String.valueOf(returnedBook.getISBN()));
+        bookFormats.setText(String.valueOf(returnedBook.getFormat()));
+        bookAvailability.setText(String.valueOf(returnedBook.getAvailability()));
+        bookGenre.setText(String.valueOf(returnedBook.getGenre()));
+        bookAuthor.setText(String.valueOf(returnedBook.getAuthor()));
         bookPrice.setText(String.valueOf(moneyString));
-        customerReview.setText(String.valueOf(returnedBook.review));
-        releaseDate.setText(String.valueOf(returnedBook.releaseDate));
-        bookName.setText(String.valueOf(returnedBook.name));
-        bookGenre.setText(String.valueOf(returnedBook.genre));
-        Toast.makeText(this,String.valueOf(returnedBook.genre), Toast.LENGTH_LONG).show();
-
+        customerReview.setText(String.valueOf(returnedBook.getReview()));
+        releaseDate.setText(String.valueOf(returnedBook.getReleaseDate()));
+        bookName.setText(String.valueOf(returnedBook.getName()));
     }
 
     /* When the book cover image is clicked, generate a modal dialog (alert dialog) that will allow for a new book cover image URL to be added */
@@ -220,7 +231,7 @@ public class AdminControlPanel extends Activity {
                 .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         try{
-                            bookCRUD.updateBookCoverURL(txtUrl.getText().toString(), Long.valueOf(mySpinner.getSelectedItem().toString()));
+                            bookCRUD.updateBookCoverURL(txtUrl.getText().toString(), Long.valueOf(searchSpinner.getSelectedItem().toString()));
                         } catch (Exception e){}
                         recentImageUri = txtUrl.getText().toString();
                     }
@@ -235,29 +246,33 @@ public class AdminControlPanel extends Activity {
 
     /* Obtain the new - and unchanged - book information from the widgets and use the book DAO to update the selected book's attributes */
     private void saveChanges(){
-        final BookCRUD bookCRUD = new BookCRUD(this);
-        final ExtraCRUD extraCRUD = new ExtraCRUD(this);
-        double _bookPrice;
+        if (searchSpinner.getSelectedItem() != null) {
+            final BookCRUD bookCRUD = new BookCRUD(this);
+            final ExtraCRUD extraCRUD = new ExtraCRUD(this);
+            double _bookPrice;
 
-        long _ISBN = Long.valueOf(mySpinner.getSelectedItem().toString());
-        String _bookFormats = bookFormats.getText().toString();
-        String _bookAvailability = bookAvailability.getText().toString();
-        String _bookAuthor = bookAuthor.getText().toString();
+            long _ISBN = Long.valueOf(bookISBN.getText().toString());
+            String _bookFormats = bookFormats.getText().toString();
+            String _bookAvailability = bookAvailability.getText().toString();
+            String _bookAuthor = bookAuthor.getText().toString();
 
-        //Try to parse the currency string back to a double as requested by the DAO
-        try{
-            _bookPrice = Double.valueOf(DecimalFormat.getCurrencyInstance(Locale.UK).parse((bookPrice.getText().toString())).toString());
-        } catch (ParseException e){
-            return;
-        }
+            //Try to parse the currency string back to a double as requested by the DAO
+            try {
+                _bookPrice = Double.valueOf(DecimalFormat.getCurrencyInstance(Locale.UK).parse((bookPrice.getText().toString())).toString());
+            } catch (ParseException e) {
+                return;
+            }
 
-        int _customerReview = Integer.valueOf(customerReview.getText().toString());
-        String _releaseDate = releaseDate.getText().toString();
-        String _bookName = bookName.getText().toString();
-        String _bookGenre = bookGenre.getText().toString();
+            int _customerReview = Integer.valueOf(customerReview.getText().toString());
+            String _releaseDate = releaseDate.getText().toString();
+            String _bookName = bookName.getText().toString();
+            String _bookGenre = bookGenre.getText().toString();
 
-        if (extraCRUD.isRelationalDataCorrect(_bookAuthor, _bookAvailability, _bookFormats, _bookGenre)) {
-            bookCRUD.updateBook(_ISBN, _bookFormats, _bookAvailability, _bookAuthor, _bookPrice, _customerReview, _releaseDate, _bookName, _bookGenre);
+            if (extraCRUD.isRelationalDataCorrect(_bookAuthor, _bookAvailability, _bookFormats, _bookGenre)) {
+                bookCRUD.updateBook(_ISBN, _bookFormats, _bookAvailability, _bookAuthor, _bookPrice, _customerReview, _releaseDate, _bookName, _bookGenre);
+            }
+        } else {
+            Toast.makeText(this, "Cannot Save Changes - No Book Loaded", Toast.LENGTH_LONG).show();
         }
     }
 }

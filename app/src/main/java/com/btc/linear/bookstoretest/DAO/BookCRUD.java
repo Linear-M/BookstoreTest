@@ -30,17 +30,17 @@ public class BookCRUD {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Book.KEY_ISBN, book.ISBN);
-        contentValues.put(Book.KEY_Name, book.name);
-        contentValues.put(Book.KEY_Author, book.author);
-        contentValues.put(Book.KEY_Availability, book.availability);
-        contentValues.put(Book.KEY_Format, book.format);
-        contentValues.put(Book.KEY_Price, book.price);
-        contentValues.put(Book.KEY_ReleaseDate, book.releaseDate);
-        contentValues.put(Book.KEY_Review, book.review);
-        contentValues.put(Book.KEY_PictureURL, book.pictureUrl);
-        contentValues.put(Book.KEY_Description, book.description);
-        contentValues.put(Book.KEY_Genre, book.genre);
+        contentValues.put(Book.KEY_ISBN, book.getISBN());
+        contentValues.put(Book.KEY_Name, book.getName());
+        contentValues.put(Book.KEY_Author, book.getAuthor());
+        contentValues.put(Book.KEY_Availability, book.getAvailability());
+        contentValues.put(Book.KEY_Format, book.getFormat());
+        contentValues.put(Book.KEY_Price, book.getPrice());
+        contentValues.put(Book.KEY_ReleaseDate, book.getReleaseDate());
+        contentValues.put(Book.KEY_Review, book.getReview());
+        contentValues.put(Book.KEY_PictureURL, book.getPictureUrl());
+        contentValues.put(Book.KEY_Description, book.getDescription());
+        contentValues.put(Book.KEY_Genre, book.getGenre());
 
         return database.insert(Book.TABLE, null, contentValues);
     }
@@ -172,8 +172,6 @@ public class BookCRUD {
         if (!isPrice){
             getBookSelectQuery +=  " = '" + advancedFilter + "'";
         }
-
-        Toast.makeText(this.context, getBookSelectQuery, Toast.LENGTH_LONG).show();
 
         ArrayList<Book> bookList = new ArrayList<>();
         Cursor cursor = database.rawQuery(getBookSelectQuery, null);
